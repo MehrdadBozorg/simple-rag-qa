@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "simple-rag-qa"
+version = "0.1.0"
+description = "Retrieval-Augmented Generation (RAG) pipeline for document retrieval and question answering"
+authors = ["Mehrdad Bozorg <bozorgmehrdad@gmail.com>"]
+license = "MIT"
+packages = [{include = "app"}] 
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.75.0"
+uvicorn = "^0.17.0"
+sentence-transformers = "^2.0.0"
+faiss-cpu = "^1.7.2"
+llama-cpp-python = "^0.3.8"
+numpy = "^1.21.0"
+huggingface_hub = "^0.10.0"
+pdfplumber = "^0.11.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
