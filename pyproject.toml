@@ -16,6 +16,7 @@ llama-cpp-python = "^0.3.8"
 numpy = "^1.21.0"
 huggingface_hub = "^0.10.0"
 pdfplumber = "^0.11.6"
+python-multipart = "^0.0.20"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
