@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from pydantic import BaseModel
 from typing import List
 from sentence_transformers import SentenceTransformer
@@ -7,6 +7,7 @@ from llama_cpp import Llama
 import numpy as np
 from collections.abc import Iterator
 from typing import Any
+import pdfplumber
 
 # Initialize FastAPI
 app = FastAPI()
@@ -35,34 +36,53 @@ class QueryRequest(BaseModel):
     query: str
     
 
-@app.post("/ingest")
-def ingest(request: IngestRequest) -> dict[str, str|int]:
+def extract_text_from_pdf(pdf_file) -> str:
     """
-    Read a list of textual documents from the request body, embed them and store them.
+    Read a pdf file, extract its texts (from all pages) and return the text as string
+    """
+    with pdfplumber.open(pdf_file) as pdf:
+        text = "\n".join(page.extract_text() for page in pdf.pages if page.extract_text())
+    return text
+
+
+@app.post("/ingest")
+async def upload_document(file: UploadFile = File(...))-> dict[str, str]:
+    """
+    Upload a document in pdf or txt format, read its text, embed the text and store the text.
     
-    Return the success message 
+    Return the success message and the file name
     """
     global documents_store
-    # Generate embeddings for the documents
-    embeddings = embedding_model.encode(request.documents)
+    if file.content_type not in ["application/pdf", "text/plain"]:
+        raise HTTPException(status_code=400, detail="Only PDF and TXT files are supported.")
+    
+    content = await file.read()
+    
+    if file.content_type == "application/pdf":
+        text = extract_text_from_pdf(file.file)
+    else:
+        text = content.decode("utf-8")
+
+    # Embed and store the text
+    embedding = embedding_model.encode([text])
     
      # Convert to NumPy array (2D) to make it compatible with the acceptable shape (n_documents, embedding_dim)
-    embeddings = np.array(embeddings) 
+    embedding = np.array(embedding) 
     
-    if embeddings.ndim != 2:  # Check if the embeddings are 2D
+    if embedding.ndim != 2:  # Check if the embeddings are 2D
         raise HTTPException(status_code=400, detail="Embeddings are not in the correct shape")
     
     # Add embeddings to FAISS index
     try:
-        embeddings = embeddings.astype('float32')  # Acceptable float format for FAISS
-        index.add(embeddings)
+        embedding = embedding.astype('float32')  # Acceptable float format for FAISS
+        index.add(embedding)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error adding embeddings to FAISS: {str(e)}")
 
     # Store the documents for future queries
-    documents_store.extend(request.documents)
+    documents_store.append(text)
     
-    return {"message": "Documents ingested successfully", "count": len(request.documents)}
+    return {"message": "Document uploaded successfully", "filename": file.filename}
 
 
 @app.post("/query")
