@@ -8,15 +8,16 @@ packages = [{include = "app"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = "^0.75.0"
+fastapi = "^0.115.12"
 uvicorn = "^0.17.0"
-sentence-transformers = "^2.0.0"
 faiss-cpu = "^1.7.2"
-llama-cpp-python = "^0.3.8"
 numpy = "^1.21.0"
-huggingface_hub = "^0.10.0"
 pdfplumber = "^0.11.6"
 python-multipart = "^0.0.20"
+pydantic = "^2.11.1"
+sentence-transformers = "^4.0.1"
+python-dotenv = "^1.1.0"
+openai = "^1.69.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
