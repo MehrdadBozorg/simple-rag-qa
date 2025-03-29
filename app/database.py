@@ -1,19 +1,18 @@
 from fastapi import UploadFile, HTTPException
 import pdfplumber
-import openai
 from pathlib import Path
 from dotenv import load_dotenv
 import os
 import faiss
 import numpy as np
 from typing import Any
+import ollama
 
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Get API key from environment variable
-openai.api_key = os.getenv("OPENAI_API_KEY")
 FAISS_INDEX_PATH = "faiss_index.index"
 DOCUMENTS_FILE_PATH = "documents.txt"
 VECTOR_DIMENSION = 384  # Adjust based on the embedding model
@@ -79,16 +78,20 @@ class QueryHandler:
         """
         try:
              
-            prompt = f"Document: {context}\n\nQuestion: {user_query}"
-            message = {
-                'role': 'user',
-                'content': prompt
-            }
-            response = openai.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[message]
+            res = ollama.chat(
+                model="llama3.2",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": f"Use context {context} and answert question {user_query}",
+                    },
+                ],
+
             )
-            return str(response.choices[0].message['content']).strip()
+            
+            print("Here is the result: ", res["message"]["content"])
+            return res["message"]["content"]
+        
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
         
