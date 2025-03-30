@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import os
 import faiss
 import numpy as np
-from typing import Any
 from llama_cpp import Llama 
 
 

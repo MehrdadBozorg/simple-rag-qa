@@ -1,7 +1,4 @@
 from sentence_transformers import SentenceTransformer
-import pdfplumber
-from typing import Any
-from pathlib import Path
 import numpy as np
 
 
