@@ -6,7 +6,7 @@ import os
 import faiss
 import numpy as np
 from typing import Any
-import ollama
+from llama_cpp import Llama 
 
 
 # Load environment variables from .env file
@@ -66,7 +66,7 @@ class DocumentHandler:
         embedding = embedding_model.encode(text)
         
         # Store document and its embedding
-        self.documents.append((text, embedding))
+        self.documents.append((text, embedding, file.filename))
         
         return {"message": "Document uploaded successfully", "filename": file.filename}
     
@@ -76,29 +76,20 @@ class QueryHandler:
         """
         Function to query OpenAI's API to get an answer for a given prompt.
         """
-        try:
-             
-            res = ollama.chat(
-                model="llama3.2",
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"Use context {context} and answert question {user_query}",
-                    },
-                ],
-
-            )
-            
-            print("Here is the result: ", res["message"]["content"])
-            return res["message"]["content"]
+        # Load the local LLaMA model to answer the question
+        llm = Llama(model_path="models/llama-7b.ggmlv3.q4_0.bin")
         
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
-        
+        prompt = f"Using the following context:\n{context}\nAnswer the question: {user_query}"
 
-    def find_most_similar_document(self, query_embedding: np.ndarray, k: int=3) -> Any:
+        # Generate answer using LLaMA
+        response = llm(prompt, max_tokens=200)
+        answer = response["choices"][0]["text"].strip()
+
+        return answer
+
+    def find_most_similar_document(self, query_embedding: np.ndarray, k: int=1):
         """
         Searches for the top-k most similar documents
         """
         _, indices = index.search(query_embedding, k)
-        return indices
+        return indices[0]

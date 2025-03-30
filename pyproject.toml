@@ -18,7 +18,9 @@ pydantic = "^2.11.1"
 sentence-transformers = "^4.0.1"
 python-dotenv = "^1.1.0"
 openai = "^1.69.0"
-ollama = "^0.4.7"
+huggingface-hub = "^0.29.3"
+llama-cpp-python = "^0.3.8"
+
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
