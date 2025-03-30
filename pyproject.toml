@@ -20,6 +20,7 @@ python-dotenv = "^1.1.0"
 openai = "^1.69.0"
 huggingface-hub = "^0.29.3"
 llama-cpp-python = "^0.3.8"
+llamacpp = "^0.1.14"
 
 
 [tool.poetry.dev-dependencies]

@@ -785,6 +785,55 @@ server = ["PyYAML (>=5.1)", "fastapi (>=0.100.0)", "pydantic-settings (>=2.0.1)"
 test = ["fastapi (>=0.100.0)", "httpx (>=0.24.1)", "huggingface-hub (>=0.23.0)", "pydantic-settings (>=2.0.1)", "pytest (>=7.4.0)", "scipy (>=1.10)", "sse-starlette (>=1.6.1)", "starlette-context (>=0.3.6,<0.4)"]
 
 [[package]]
+name = "llamacpp"
+version = "0.1.14"
+description = "Python bindings for @ggerganov's llama.cpp"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "llamacpp-0.1.14-cp310-cp310-macosx_10_9_universal2.macosx_10_9_x86_64.macosx_11_0_arm64.macosx_11_0_universal2.whl", hash = "sha256:aacfef0774bf5a213ebbd29a151793f352d1ee31b8220b68582d53c19a82aaa4"},
+    {file = "llamacpp-0.1.14-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:955d9cb5077d6df39781dfad5668ff3b1b427e7208d5cf482422ebb44e7cadf5"},
+    {file = "llamacpp-0.1.14-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:c32965163468f7cc617fc7ce6a722bbbc937d5a6ba1ddde95aa9cf8e80151fe3"},
+    {file = "llamacpp-0.1.14-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3109beac3f9693f9f7b96d8b8ba3692369db1d6972fc80dfe2e85010e5396c9f"},
+    {file = "llamacpp-0.1.14-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b0d77d7754183faf8eeed644b51679e5ff0676e308c12251d98521fa6f085871"},
+    {file = "llamacpp-0.1.14-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:f21557b79f57970d0b243f5d84bbc608807ff7069855cc71bcd10611344f5d72"},
+    {file = "llamacpp-0.1.14-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:ae81ff6e293b7798f1990acc371e2f759f53da4225ceeaf81d760a20b596abbd"},
+    {file = "llamacpp-0.1.14-cp310-cp310-win_amd64.whl", hash = "sha256:649f7d675d3b8237e13c02462b8225254c985eb3a5bcecc78c57f3ef0dc17067"},
+    {file = "llamacpp-0.1.14-cp311-cp311-macosx_10_9_universal2.macosx_10_9_x86_64.macosx_11_0_arm64.macosx_11_0_universal2.whl", hash = "sha256:c76c6a79340c053310db0047a292412bc846468fbfa833681753c335baf91939"},
+    {file = "llamacpp-0.1.14-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:5eb34a3755fabab53a8e9925a2924aa378f3fa992e1c1ac5a6bbad04101f3069"},
+    {file = "llamacpp-0.1.14-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:68284591487c23c0f14d7a8408586fa6a2f52a227fbf99710bb61095caf8eef2"},
+    {file = "llamacpp-0.1.14-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cb550c02b090a0f9fb33add8cd11eb7afc55126b035780873a37e6ffe3ba6217"},
+    {file = "llamacpp-0.1.14-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ee41eb9510e8d6c6b944d85c35fbfc51424dfb6953e21f5ab68664bb1c69f24e"},
+    {file = "llamacpp-0.1.14-cp311-cp311-musllinux_1_1_aarch64.whl", hash = "sha256:67db633a3d62a4a5cbd54994b1ff7f7e37d9e1b3bbcb46521e48a67e6e909ce7"},
+    {file = "llamacpp-0.1.14-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:e519e8f35ddc608db495230946da2df4376db5934873dc61ff34e77a842451a6"},
+    {file = "llamacpp-0.1.14-cp311-cp311-win_amd64.whl", hash = "sha256:06b72ff0b71bbd392253e117272de1adaf61d2888cfa105da8c69f349b1f98ae"},
+    {file = "llamacpp-0.1.14-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:ce4379cb8ae3355d630b3edd0f08138c3c4e8ce344ea39e5e7d9f72c0b4d1c57"},
+    {file = "llamacpp-0.1.14-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8f52b43b2b67980a81aec61cc4368e5c28ee9895a487b5fcb82729e42cd49e79"},
+    {file = "llamacpp-0.1.14-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ffc02516886b8742d7bf17c753be74a907a600cc9edf5fc63ddaa1b7e22815c0"},
+    {file = "llamacpp-0.1.14-cp37-cp37m-musllinux_1_1_aarch64.whl", hash = "sha256:71b247979dc49cee7889983c5f4c4b1a295554100df3655024452a162c1ce985"},
+    {file = "llamacpp-0.1.14-cp37-cp37m-musllinux_1_1_x86_64.whl", hash = "sha256:8b1699b96f279278421c5e2df859df3d4d3785a28aa2ff984b0aacc14ee0f793"},
+    {file = "llamacpp-0.1.14-cp37-cp37m-win_amd64.whl", hash = "sha256:3f53bd0abe1ac3d0c30680f0537071229c5f7e9d2fb2b1cb1282f0096928908f"},
+    {file = "llamacpp-0.1.14-cp38-cp38-macosx_10_9_universal2.macosx_10_9_x86_64.macosx_11_0_arm64.macosx_11_0_universal2.whl", hash = "sha256:3b4ac68cf55e7ffd1d898347ef48c3977d28345056e4b76fcd50e329bb6b0057"},
+    {file = "llamacpp-0.1.14-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:9c5222ca3d94d43bb876965b1fa201aa6d8a9b9555fdce546095b2a3d1087d1f"},
+    {file = "llamacpp-0.1.14-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:abc7c5fdcca9e3b68add7fd174265d0ec25678d74100ac4640a875ed38effbd1"},
+    {file = "llamacpp-0.1.14-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c69b07bc101c9ca418d76d7d4e8508a2b4bbd0ec7d91d359040afb590e2c49a3"},
+    {file = "llamacpp-0.1.14-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1cffa2275f0f3f7d790f4fe601ffd16e74e1f03a089c907a280826caa23e9be6"},
+    {file = "llamacpp-0.1.14-cp38-cp38-musllinux_1_1_aarch64.whl", hash = "sha256:ba4bf33f6cda5f4246e60d24758d7b43b704c59ac9cf11b9bd5f7c54cde2bb1f"},
+    {file = "llamacpp-0.1.14-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:4e8320464f654d4eb160a3fa9b529a2b1eaf724901587fd4a2c53dfec663376b"},
+    {file = "llamacpp-0.1.14-cp38-cp38-win_amd64.whl", hash = "sha256:c892e8904831d3d0e9ed6307c2d18f6b8a750ba88f59d6af8647b3b4376da977"},
+    {file = "llamacpp-0.1.14-cp39-cp39-macosx_10_9_universal2.macosx_10_9_x86_64.macosx_11_0_arm64.macosx_11_0_universal2.whl", hash = "sha256:c756d8a7df225ecc18ef869e344da17b9c3ce1d769f589f8e0933b2066f571e6"},
+    {file = "llamacpp-0.1.14-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:5949bc02c3e15b38142e2985892bc0271a5fa53794e9c2dc0db469433e5657b9"},
+    {file = "llamacpp-0.1.14-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:52fecc05bfb6a7673e375508f307f9fa953bcf224043b69f3669f5358fd3a533"},
+    {file = "llamacpp-0.1.14-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:362d042cc07629ff74fcc3c8b98aa86566b4649a3c186fd80c027af91db25c2f"},
+    {file = "llamacpp-0.1.14-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9e220e6efb34eb26e5061e8c147c91c45ff529c6445f3fe63caa12a8f56fde9c"},
+    {file = "llamacpp-0.1.14-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:8c386e384d311b895b3da0b335d439e1fce5ea1ebb484730330009d514fd8b50"},
+    {file = "llamacpp-0.1.14-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:36fff86f13431cae3b1406716a40337c075ecce55481d104f7be685d064be394"},
+    {file = "llamacpp-0.1.14-cp39-cp39-win_amd64.whl", hash = "sha256:77663b939554b780e3208cea33c2938feb77d3594ddcbf42863c22cd9e87bdcb"},
+    {file = "llamacpp-0.1.14.tar.gz", hash = "sha256:e558af0778bc9a8335379eacaaf368d9d43966f19b05c445e200397a36c02152"},
+]
+
+[[package]]
 name = "markupsafe"
 version = "3.0.2"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -2290,4 +2339,4 @@ standard = ["PyYAML (>=5.1)", "colorama (>=0.4) ; sys_platform == \"win32\"", "h
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "036fd71b3f7c2b37d0dc5947426f4762312e1812ef2ad95bcea998dfa6458b5a"
+content-hash = "d904aeb5743c4b0940f5cc9ca24bcab8bbccc7157409d857ac15649601d1218e"
