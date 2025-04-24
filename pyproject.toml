@@ -21,6 +21,7 @@ openai = "^1.69.0"
 huggingface-hub = "^0.29.3"
 llama-cpp-python = "^0.3.8"
 llamacpp = "^0.1.14"
+h11 = "^0.15.0"
 
 
 [tool.poetry.dev-dependencies]
